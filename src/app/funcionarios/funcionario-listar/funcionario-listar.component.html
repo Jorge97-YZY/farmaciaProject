@@ -1,0 +1,37 @@
+<div class="container">
+
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+      <a class="btn btn-outline-success" [routerLink]="['/farmacia/funcionario/cadastro']"   >Novo</a>
+      <table class="table table-striped ">
+        <thead >
+          <br>
+          <tr class="table-info">
+            <th>Nº de Funcionario</th>
+            <th>Funcionario</th>
+            <th>BI</th>
+            <th>Data de Nascimento</th>
+            <th>(+244) Telefone</th>
+            <th>Bairro / Rua</th>
+            <th>Data de Admecao</th>
+            <th>Estado</th>
+            <th>Editar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let f of funcionarios" >
+            <td>{{f?.numFunc}}</td>
+            <td>{{f?.nome}}</td>
+            <td>{{f?.bi}}</td>
+            <td>{{f?.data_nac}}</td>
+            <td>(+244) {{f?.telefone}}</td>
+            <td>{{f?.bairro }} / {{f?.rua}}</td>
+            <td>{{f?.dataAdmisao}}</td>
+            <td [style.color]="f?.status? 'blue':'red'">{{f?.status? 'Activo': 'Inactivo'}}</td>
+            <td><button class="btn btn-outline-warning" >Editar</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

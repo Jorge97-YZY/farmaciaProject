@@ -1,0 +1,39 @@
+
+<div class="container">
+    <h2>Editar Fornecedor</h2>
+  <form [formGroup]="formPrincipal" (ngSubmit)="onSubmit()">
+    <br>
+      <div class="row">
+          <label for="nome" class="form-control-label">Nome</label>
+          <input type="text" class="form-control form-control-danger" placeholder="Informe o nome" [value]="fornecedor.nome"  formControlName="nome"  [(ngModel)]="fornecedor.nome">
+      </div>
+
+      <div class="row">
+          <label for="telefone" class="form-control-label">Telefone</label>
+          <input type="text" class="form-control form-control-danger" placeholder="Informe o  numero de telefone" [value]="fornecedor.telefone"  formControlName="telefone" [(ngModel)]="fornecedor.telefone">
+      </div>
+      <div class="row">
+        <label for="email" class="form-control-label">Email</label>
+        <input type="text" class="form-control form-control-danger" placeholder="Informe o  Email" [value]="fornecedor.email"  formControlName="email" [(ngModel)]="fornecedor.email">
+    </div>
+      
+      <div class="row">
+          <label for="nif" class="form-control-label">NIF</label>
+          <input type="text" class="form-control form-control-danger" placeholder="Informe o  NIF" [value]="fornecedor.nif"  formControlName="nif" [(ngModel)]="fornecedor.nif">
+      </div>
+      <div class="row">
+          <div class="form-check">
+                  <input type="checkbox" class="form-check-input" id="status" [value]="fornecedor.status" formControlName="status" [(ngModel)]="fornecedor.status">
+                  <label class="form-check-label" for="status">Status</label>
+                </div>
+      </div>
+      
+      <br/>
+      <div class="row">
+          <button [disabled]="formPrincipal.invalid" type="submit" class="btn btn-success" >Editar</button>
+          
+      </div>
+
+      
+  </form>
+</div>

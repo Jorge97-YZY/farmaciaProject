@@ -1,0 +1,35 @@
+<div class="container">
+
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+      <a class="btn btn-outline-success"    >Novo</a>
+      <table class="table table-striped ">
+        <thead >
+          <br>
+          <tr class="table-info">
+            <th>Codigo</th>
+            <th>Descrição</th>
+            <th>Quantidade</th>
+            <th>Preço</th>
+            <th>Nome Fornecedor</th>
+            <th>(+244) Telefone Fornecedor</th>
+            <th>Nif Fornecedor</th>
+            <th>Editar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let p of produtos" >
+            <td>{{p?.id}}</td>
+            <td>{{p?.descricao}}</td>
+            <td>{{p?.quantidade}}</td>
+            <td>{{p?.preco}}</td>
+            <td>{{p?.fornecedor.nome}}</td>
+            <td>(+244) {{p?.fornecedor.telefone}}</td>
+            <td>{{p?.fornecedor.nif}}</td>
+                  <td><button class="btn btn-outline-warning" >Editar</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

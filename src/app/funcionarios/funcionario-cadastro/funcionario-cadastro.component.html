@@ -1,0 +1,55 @@
+<div class="container">
+    <h2>Cadastrar Funcionario</h2>
+<br>
+<form [formGroup]="formPrincipal" (ngSubmit)="onSubmit()">
+    <div class="row">
+        <label for="nome" class="form-control-label">Nome</label>
+        <input type="text" class="form-control form-control-danger" placeholder="Informe o nome"  formControlName="nome"  [(ngModel)]="funcionario.nome">
+    </div>
+    <div class="row">
+        <label for="bi" class="form-control-label">BI</label>
+        <input type="text" class="form-control form-control-danger" placeholder="Informe o Nº do Bi"  formControlName="bi" [(ngModel)]="funcionario.bi">
+    </div>
+    <div class="row">
+        <label for="dataNac" class="form-control-label">Data Nascimento</label>
+        <input type="date" class="form-control form-control-danger" placeholder="Informe a Data de Nascimento"  formControlName="data_nac" [(ngModel)]="funcionario.data_nac">
+    </div>
+
+    <div class="row">
+        <label for="telefone" class="form-control-label">Telefone</label>
+        <input type="text" class="form-control form-control-danger" placeholder="Informe o  numero de telefone"  formControlName="telefone" [(ngModel)]="funcionario.telefone">
+    </div>
+    <div class="row">
+        <label for="bairro" class="form-control-label">Bairro</label>
+        <input type="text" class="form-control form-control-danger" placeholder="Informe o Bairo"  formControlName="bairro" [(ngModel)]="funcionario.bairro">
+    </div>
+    <div class="row">
+        <label for="rua" class="form-control-label">Rua</label>
+        <input type="text" class="form-control form-control-danger" placeholder="Informe a Rua"  formControlName="rua" [(ngModel)]="funcionario.rua">
+    </div>
+    <div class="row">
+        <label for="dataAdmicao" class="form-control-label">Data Admicao</label>
+        <input type="date" class="form-control form-control-danger" placeholder="Informe a Data de Admicao"  formControlName="dataAdmisao" [(ngModel)]="funcionario.dataAdmisao">
+    </div>
+    
+    <div class="row">
+        <label for="numFunc" class="form-control-label">Nº de Funcionario</label>
+        <input type="text" class="form-control form-control-danger" placeholder="Informe o  Numero de Funcionario"  formControlName="numFunc" [(ngModel)]="funcionario.numFunc">
+    </div>
+    
+    <div class="row">
+            <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="status" formControlName="status" [(ngModel)]="funcionario.status">
+                    <label class="form-check-label" for="status">Status</label>
+                  </div>
+        </div>
+
+    
+    <br/>
+    <div class="row">
+        <button [disabled]="formPrincipal.invalid" type="submit" class="btn btn-success">Guardar</button>
+    </div>
+
+    
+</form>
+</div>

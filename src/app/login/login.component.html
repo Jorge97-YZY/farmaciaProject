@@ -1,0 +1,29 @@
+<div class="container py-5">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="row">
+        <div class="col-md-6 mx-auto">
+          <div class="card rounded-0">
+            <div class="card-header">
+              <h3 class="mb-0">FARMACIA VIVA</h3>
+            </div>
+            <div class="card-body">
+              <form class="form" role="form">
+                <div class="form-group">
+                  <label> Nome de Usuario</label>
+                  <input type="text" class="form-control form-control-lg rounded-0" name="nome" required [(ngModel)]="user.nome">
+
+                </div>
+                <div class="form-group">
+                  <label>Senha</label>
+                  <input type="password" class="form-control form-control-lg rounded-0" name="senha" required [(ngModel)]="user.senha">
+                </div>
+                <button  class="btn btn-success btn-lg float-right" (click)="fazerLogin()">Entrar</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,31 @@
+<div class="container">
+
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+      <a class="btn btn-outline-success" (click)="cadastro()"  >Novo</a>
+      <table class="table  ">
+        <thead >
+          <br>
+          <tr class="table-info">
+            <th>Fornecedor</th>
+            <th>(+244) Telefone</th>
+            <th>Email</th>
+            <th>NIF</th>
+            <th>Estado</th>
+            <th>Editar</th>
+            </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let f of fornecedores " >
+            <td>{{f?.nome}}</td>
+            <td>(+244) {{f?.telefone}}</td>
+            <td>{{f?.email}}</td>
+            <td>{{f?.nif}}</td>
+            <td [style.color]="f?.status? 'blue':'red'">{{f?.status? 'Activo': 'Inactivo'}}</td>
+            <td><button class="btn btn-outline-warning" [routerLink]="[f.id]">Editar</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
