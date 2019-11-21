@@ -22,11 +22,11 @@ import { AuthGuard } from './guards/auth.guard';
 
   ],
   imports: [
-BrowserModule,
+    BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-   FornecedorModule,
-   FormsModule,
+    FornecedorModule,
+    FormsModule
   ],
   providers: [
     AuthService,

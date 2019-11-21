@@ -1,39 +1,59 @@
-<div class="container">
-        <h2>Cadastrar Fornecedor</h2>
-<br>
-    <form [formGroup]="formPrincipal" (ngSubmit)="onSubmit()">
-        <div class="row">
-            <label for="nome" class="form-control-label">Nome</label>
-            <input type="text" class="form-control form-control-danger" placeholder="Informe o nome"  formControlName="nome"  [(ngModel)]="fornecedor.nome">
+<form class="form-horizontal" [formGroup]="formulario" (ngSubmit)="onSubmit()">
+    <div class="form-group" [ngClass]="aplicaCssErro('nome')">
+
+        <div class="col-sm-12">
+            <label for="nome" class="control-label">Nome</label>
+        </div>
+        <div class="col-sm-12">
+            <input type="text" class="form-control" id="nome" placeholder="Nome" formControlName="nome">
+            <app-campo-control-erro [mostarErro]="verificarValidTouched('nome')" msgErro=" O Campo Nome é Obrigatório.">
+            </app-campo-control-erro>
+        </div>
+    </div>
+
+    <div class="form-group" [ngClass]="aplicaCssErro('email')">
+        <div class="col-sm-12">
+            <label for="email" class="control-label">Email</label>
+        </div>
+        <div class="col-sm-12">
+            <input type="email" class="form-control" id="email" placeholder="nome@email.com" formControlName="email">
+            <app-campo-control-erro [mostarErro]="verificarValidTouched('email')"
+                msgErro=" O Campo Email é Obrigatório.">
+            </app-campo-control-erro>
+            <app-campo-control-erro [mostarErro]="verificarEmailInvalido()" msgErro=" Email Invalido.">
+            </app-campo-control-erro>
+        </div>
+    </div>
+    <div class="form-group">
+
+    <div class="col-md-3" [ngClass]="aplicaCssErro('telefone')">
+            <label class="control-label" for="telefone">Telefone</label>
+            <input type="text" class="form-control" id="telefone" formControlName="telefone">
+            <app-campo-control-erro [mostarErro]="verificarValidTouched('telefone')"
+                msgErro=" O Campo Telefone é Obrigatório.">
+            </app-campo-control-erro>
         </div>
 
-        <div class="row">
-            <label for="telefone" class="form-control-label">Telefone</label>
-            <input type="text" class="form-control form-control-danger" placeholder="Informe o  numero de telefone"  formControlName="telefone" [(ngModel)]="fornecedor.telefone">
-        </div>
-        <div class="row">
-            <label for="email" class="form-control-label">Email</label>
-            <input type="text" class="form-control form-control-danger" placeholder="Informe o Email"  formControlName="email" [(ngModel)]="fornecedor.email">
-        </div>
-        
-        <div class="row">
-            <label for="nif" class="form-control-label">NIF</label>
-            <input type="text" class="form-control form-control-danger" placeholder="Informe o  NIF"  formControlName="nif" [(ngModel)]="fornecedor.nif">
-        </div>
-        
-        <div class="row">
-                <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="status" formControlName="status" [(ngModel)]="fornecedor.status">
-                        <label class="form-check-label" for="status">Status</label>
-                      </div>
-            </div>
-
-        
-        <br/>
-        <div class="row">
-            <button [disabled]="formPrincipal.invalid" type="submit" class="btn btn-success">Guardar</button>
+        <div class="col-md-3" [ngClass]="aplicaCssErro('nif')">
+            <label class="control-label" for="nif">NIF</label>
+            <input type="text" class="form-control" id="nif" formControlName="nif">
+            <app-campo-control-erro [mostarErro]="verificarValidTouched('nif')"
+                msgErro=" O Campo Numero é Obrigatório.">
+            </app-campo-control-erro>
         </div>
 
-        
-    </form>
-</div>
+
+        <div class="form-check">
+            <input type="checkbox" class="form-control" id="complemento" formControlName="status">
+            <label class="control-label form-check-label" for="complemento">Status</label>
+
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary"> Guardar </button>
+    <button class="btn btn-danger" (click)="resetar()"> Cancelar </button>
+    <app-form-debug [form]="formulario"></app-form-debug>
+
+
+
+</form>

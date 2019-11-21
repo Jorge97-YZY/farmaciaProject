@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+
 import { FornecedorService } from '../fornecedor.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Fornecedor } from '../../model/fornecedor.model';
+
 
 @Component({
   selector: 'app-fornecedor-cadastro',
@@ -10,44 +13,68 @@ import { Fornecedor } from '../../model/fornecedor.model';
 })
 export class FornecedorCadastroComponent implements OnInit {
 
-  formPrincipal: FormGroup;
-    fornecedor: Fornecedor = {
-        nome: '',
-        telefone: null,
-        nif: '',
-        status: false,
-    };
+  formulario: FormGroup;
+
   constructor(
     private fornecedorService: FornecedorService,
-        private formBuilder: FormBuilder,
+    private formBuilder: FormBuilder,
+    private http: HttpClient
   ) { }
 
   ngOnInit() {
-    this.validarForm();
-  }
-  // Validação dos Formularios
-  validarForm() {
-    this.formPrincipal = this.formBuilder.group({
-        'nome': ['', Validators.required],
-        'telefone': [''],
-        'email': ['', Validators.required],
-        'nif': ['', Validators.required],
-        'status': [''],
+    this.formulario = this.formBuilder.group({
+      'nome': ['', Validators.required],
+      'telefone': ['', Validators.required],
+      'email': ['', [Validators.required, Validators.email]],
+      'nif': ['', Validators.required],
+      'status': [''],
     });
-}
+
+  }
 
 
-// Submeter o Formulario
-onSubmit() {
-  const guardarFornecedor = new Fornecedor;
-  guardarFornecedor.nome = this.fornecedor.nome;
-  guardarFornecedor.telefone = this.fornecedor.telefone;
-  guardarFornecedor.email = this.fornecedor.email;
-  guardarFornecedor.nif = this.fornecedor.nif;
-  guardarFornecedor.status = this.fornecedor.status;
-  this.fornecedorService.guardarFornecedor(guardarFornecedor).subscribe(response => {
-      console.log('Resultado:', response);
-  });
+  // Submeter o Formulario
+  onSubmit() {
+    if (this.formulario.valid) {
+      console.log(this.formulario.value);
+      this.http.post('https://httpbin.org/post', JSON.stringify(this.formulario.value)).subscribe(dados => {
+        console.log(dados);
+        this.resetar();
+      }, (error: any) => alert('Erro'));
+    } else {
+      console.log('Formulario Invalido!');
+      this.verificaValidacoesForm(this.formulario);
+    }
 
-}
+
+  }
+  verificaValidacoesForm(formGroup: FormGroup) {
+    Object.keys(formGroup.controls).forEach(campo => {
+      console.log(campo);
+      const controle = formGroup.get(campo);
+      controle.markAsDirty();
+      if (controle instanceof FormGroup) {
+        this.verificaValidacoesForm(controle);
+      }
+    });
+  }
+  resetar() {
+    this.formulario.reset();
+  }
+  verificarValidTouched(campo: string) {
+    return !this.formulario.get(campo).valid && (this.formulario.get(campo).touched || this.formulario.get(campo).dirty);
+  }
+  verificarEmailInvalido() {
+    const campoEmail = this.formulario.get('email');
+    if (this.formulario.get('email').errors) {
+      return this.formulario.get('email').errors.email && campoEmail.touched;
+    }
+  }
+  aplicaCssErro(campo: string) {
+    return {
+      'has-error': this.verificarValidTouched(campo),
+      'has-feedback': this.verificarValidTouched(campo)
+    };
+  }
+
 }
