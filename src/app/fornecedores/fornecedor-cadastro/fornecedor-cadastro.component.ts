@@ -22,6 +22,10 @@ export class FornecedorCadastroComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.criarForm();
+
+  }
+  criarForm() {
     this.formulario = this.formBuilder.group({
       'nome': ['', Validators.required],
       'telefone': ['', Validators.required],
@@ -29,7 +33,6 @@ export class FornecedorCadastroComponent implements OnInit {
       'nif': ['', Validators.required],
       'status': [''],
     });
-
   }
 
 

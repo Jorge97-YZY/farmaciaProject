@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+
 import { Fornecedor } from '../model/fornecedor.model';
 import { FORNECEDORES } from './../mocks/fornecedor.mock';
 
