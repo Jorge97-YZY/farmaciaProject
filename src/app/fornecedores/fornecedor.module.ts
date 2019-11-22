@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import {  ReactiveFormsModule } from '@angular/forms';
+import {  ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { ForncedorRoutingModule } from './fornecedor.routing.module';
 import { FornecedorListarComponent } from './fornecedor-listar/fornecedor-listar.component';
@@ -24,7 +24,8 @@ import { SharedModule } from './../shared/shared.module';
     RouterModule,
     ReactiveFormsModule,
     SharedModule,
-    ForncedorRoutingModule
+    ForncedorRoutingModule,
+    FormsModule
   ],
   providers: [
     FornecedorService

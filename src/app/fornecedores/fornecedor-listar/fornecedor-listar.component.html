@@ -1,10 +1,15 @@
 <div class="container">
 
   <div class="row">
+
+
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-      <a class="btn btn-outline-success" (click)="cadastro()"  >Novo</a>
-      <table class="table  ">
-        <thead >
+      <div class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Pesquisar" aria-label="Pesquisar"  >
+        <button class="btn btn-outline-success my-2 my-sm-0" type="button" >Pesquisar</button>
+      </div>
+      <table class="table">
+        <thead>
           <br>
           <tr class="table-info">
             <th>Fornecedor</th>
@@ -13,10 +18,10 @@
             <th>NIF</th>
             <th>Estado</th>
             <th>Editar</th>
-            </tr>
+          </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let f of fornecedores " >
+          <tr *ngFor="let f of fornecedores ">
             <td>{{f?.nome}}</td>
             <td>(+244) {{f?.telefone}}</td>
             <td>{{f?.email}}</td>

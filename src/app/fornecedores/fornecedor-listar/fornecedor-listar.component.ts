@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 })
 export class FornecedorListarComponent implements OnInit {
   fornecedores: any[];
+  filtro: string;
   constructor(
     private fornecedorService: FornecedorService,
     private router: Router
@@ -29,5 +30,4 @@ export class FornecedorListarComponent implements OnInit {
   cadastro() {
     this.router.navigate(['/fornecedor', 'novo']);
   }
-
 }
