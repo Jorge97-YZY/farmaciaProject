@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 export class FornecedorListarComponent implements OnInit {
   fornecedores: any[];
   filtro: string;
+  id: number;
   constructor(
     private fornecedorService: FornecedorService,
     private router: Router
@@ -20,7 +21,8 @@ export class FornecedorListarComponent implements OnInit {
 
   ngOnInit() {
     // this.fornecedorListar();
-    this.fornecedores = this.fornecedorService.fornList();
+    // this.fornecedores = this.fornecedorService.fornList();
+    this.obterFornecedor();
   }
   /*fornecedorListar() {
     this.fornecedorService.listaFornecedor().subscribe(res => {
@@ -29,5 +31,17 @@ export class FornecedorListarComponent implements OnInit {
   }*/
   cadastro() {
     this.router.navigate(['/fornecedor', 'novo']);
+  }
+  obterFornecedor() {
+    this.fornecedores = this.fornecedorService.fornList();
+    if (this.fornecedores.length === 0 || this.filtro === undefined || this.filtro.trim() === '') {
+      return this.fornecedores;
+    }
+    return this.fornecedores.filter((v) => {
+      if (v.nome.toLowerCase().indexOf(this.filtro.toLowerCase()) >= 0) {
+        return true;
+      }
+      return false;
+    });
   }
 }

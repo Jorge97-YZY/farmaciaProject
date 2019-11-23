@@ -14,6 +14,7 @@ export class FornecedorService {
 
   fornecedores: Fornecedor[] = FORNECEDORES;
 
+
     private urlFornecedoresListar = 'http://localhost:8080/fornecedor/listar/todos';
     private urlFornecedoresListarId = 'http://localhost:8080/fornecedor/listar';
     private urlFornecedoresGuardar = 'http://localhost:8080/fornecedor/guardar';
@@ -43,5 +44,13 @@ export class FornecedorService {
        fornList() {
         return this.fornecedores;
       }
-
-    }
+      listId(id: number) {
+        for (let i = 0; i < this.fornecedores.length; i++) {
+          const fornecedor = this.fornecedores[i];
+          if (fornecedor.id === id) {
+            return fornecedor;
+          }
+        }
+        return null;
+      }
+      }

@@ -12,15 +12,16 @@ import { FornecedorService } from '../fornecedor.service';
 export class FornecedorEditarComponent implements OnInit {
   formPrincipal: FormGroup;
   fornecedor: Fornecedor = {
-      nome: '',
-      telefone: null,
-      nif: '',
-      status: false,
+    nome: '',
+    telefone: null,
+    email: '',
+    nif: '',
+    status: false,
   };
   constructor(
     private fornecedorService: FornecedorService,
-        private formBuilder: FormBuilder,
-        private route: ActivatedRoute
+    private formBuilder: FormBuilder,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
@@ -30,36 +31,36 @@ export class FornecedorEditarComponent implements OnInit {
   // Validação dos Formularios
   validarForm() {
     this.formPrincipal = this.formBuilder.group({
-        'nome': ['', Validators.required],
-        'telefone': [''],
-        'email': ['', Validators.required],
-        'nif': ['', Validators.required],
-        'status': [''],
+      'nome': ['', Validators.required],
+      'telefone': [''],
+      'email': ['', Validators.required],
+      'nif': ['', Validators.required],
+      'status': [''],
     });
-}
-mostrarFornecedor() {
-  this.route.params.subscribe((params: Params) => {
-    const id = +params['id'];
-    this.fornecedorService.listarFornecedorPorId(id).subscribe((res => {
-      this.fornecedor = res;
-    })
+  }
+  mostrarFornecedor() {
+    this.route.params.subscribe((params: Params) => {
+      const id = +params['id'];
+      this.fornecedor = this.fornecedorService.listId(id);
+      if (this.fornecedor === null) {
+        this.fornecedor = {};
+      }
+    }
     );
   }
-  );
-}
-// sera executado quando o formulario for submetido
-onSubmit() {
-  const fornecedorEditar = new Fornecedor;
-  fornecedorEditar.id = this.fornecedor.id;
-  fornecedorEditar.nome = this.fornecedor.nome;
-  fornecedorEditar.telefone = this.fornecedor.telefone;
-  fornecedorEditar.email = this.fornecedor.email;
-  fornecedorEditar.nif = this.fornecedor.nif;
-  fornecedorEditar.status = this.fornecedor.status;
+  // sera executado quando o formulario for submetido
+  onSubmit() {
+    const fornecedorEditar = new Fornecedor;
+    fornecedorEditar.id = this.fornecedor.id;
+    fornecedorEditar.nome = this.fornecedor.nome;
+    fornecedorEditar.telefone = this.fornecedor.telefone;
+    fornecedorEditar.email = this.fornecedor.email;
+    fornecedorEditar.nif = this.fornecedor.nif;
+    fornecedorEditar.status = this.fornecedor.status;
 
-  this.fornecedorService.editarFornecedor(fornecedorEditar).subscribe(response => {
+    this.fornecedorService.editarFornecedor(fornecedorEditar).subscribe(response => {
       console.log('Resultado:', response);
-  });
-}
+    });
+  }
 
 }

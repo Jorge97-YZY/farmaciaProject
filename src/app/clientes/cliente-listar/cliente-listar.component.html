@@ -2,7 +2,9 @@
 
   <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-      <a class="btn btn-outline-success" [routerLink]="['/farmacia/cliente/cadastro']"   >Novo</a>
+           <div class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Pesquisar por nome" aria-label="Pesquisar" [(ngModel)]="filtro"  >
+      </div>
       <table class="table table-striped ">
         <thead >
           <br>
@@ -20,7 +22,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let c of clientes" >
+          <tr *ngFor="let c of obterCliente()" >
             <td>{{c?.numCliente}}</td>
             <td>{{c?.nome}}</td>
             <td>{{c?.bi}}</td>
