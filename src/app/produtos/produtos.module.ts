@@ -8,6 +8,7 @@ import { ProdutoListarComponent } from './produto-listar/produto-listar.componen
 import { ProdutoEditarComponent } from './produto-editar/produto-editar.component';
 import { ProdutoCadastrarComponent } from './produto-cadastrar/produto-cadastrar.component';
 import { ProdutoRouringModule } from './produto.routing.module';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -20,8 +21,9 @@ import { ProdutoRouringModule } from './produto.routing.module';
   imports: [
     CommonModule,
     RouterModule,
-    FormsModule,
     ReactiveFormsModule,
+    SharedModule,
+    FormsModule,
     ProdutoRouringModule
   ]
 })

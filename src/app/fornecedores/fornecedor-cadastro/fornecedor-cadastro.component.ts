@@ -1,14 +1,14 @@
-import { Component, OnInit } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
-import { FornecedorService } from "../fornecedor.service";
-import { FormGroup, FormBuilder, Validators } from "@angular/forms";
-import { Fornecedor } from "../../model/fornecedor.model";
+import { FornecedorService } from '../fornecedor.service';
+
 
 @Component({
-  selector: "app-fornecedor-cadastro",
-  templateUrl: "./fornecedor-cadastro.component.html",
-  styleUrls: ["./fornecedor-cadastro.component.css"]
+  selector: 'app-fornecedor-cadastro',
+  templateUrl: './fornecedor-cadastro.component.html',
+  styleUrls: ['./fornecedor-cadastro.component.css']
 })
 export class FornecedorCadastroComponent implements OnInit {
   formulario: FormGroup;
@@ -24,11 +24,11 @@ export class FornecedorCadastroComponent implements OnInit {
   }
   criarForm() {
     this.formulario = this.formBuilder.group({
-      nome: ["", Validators.required],
-      telefone: ["", Validators.required],
-      email: ["", [Validators.required, Validators.email]],
-      nif: ["", Validators.required],
-      status: [""]
+      nome: ['', Validators.required],
+      telefone: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      nif: ['', Validators.required],
+      status: ['']
     });
   }
 
@@ -39,7 +39,7 @@ export class FornecedorCadastroComponent implements OnInit {
       this.fornecedorService.guardarFunc(this.formulario.value);
       this.resetar();
     } else {
-      console.log("Formulario Invalido!");
+      console.log('Formulario Invalido!');
       this.verificaValidacoesForm(this.formulario);
     }
   }
@@ -63,15 +63,15 @@ export class FornecedorCadastroComponent implements OnInit {
     );
   }
   verificarEmailInvalido() {
-    const campoEmail = this.formulario.get("email");
-    if (this.formulario.get("email").errors) {
-      return this.formulario.get("email").errors.email && campoEmail.touched;
+    const campoEmail = this.formulario.get('email');
+    if (this.formulario.get('email').errors) {
+      return this.formulario.get('email').errors.email && campoEmail.touched;
     }
   }
   aplicaCssErro(campo: string) {
     return {
-      "has-error": this.verificarValidTouched(campo),
-      "has-feedback": this.verificarValidTouched(campo)
+      'has-error': this.verificarValidTouched(campo),
+      'has-feedback': this.verificarValidTouched(campo)
     };
   }
 }

@@ -44,6 +44,9 @@ export class FornecedorService {
   fornList() {
     return this.fornecedores;
   }
+  consultarForn(nome: string){
+    return this.fornecedores.filter(v => v.nome === nome);
+  }
   listId(id: number) {
     for (let i = 0; i < this.fornecedores.length; i++) {
       const fornecedor = this.fornecedores[i];

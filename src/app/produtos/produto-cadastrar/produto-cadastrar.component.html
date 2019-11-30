@@ -1,3 +1,92 @@
-<p>
-  produto-cadastrar works!
-</p>
+<div class="container">
+  <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
+
+    <div class="row">
+      <div class="col-6 col-md-6" [ngClass]="aplicaCssErro('descricao')">
+        <label class="control-label" for="descricao">Descrição</label>
+        <input type="text" class="form-control" id="descricao" formControlName="descricao">
+        <app-campo-control-erro [mostarErro]="verificarValidTouched('descricao')"
+          msgErro=" O Campo Descrição é Obrigatório.">
+        </app-campo-control-erro>
+      </div>
+
+      <div class="col-6 col-md-3" [ngClass]="aplicaCssErro('quantidade')">
+        <label class="control-label" for="quantidade">Quantidade</label>
+        <input type="number" class="form-control" id="quantidade" formControlName="quantidade">
+        <app-campo-control-erro [mostarErro]="verificarValidTouched('quantidade')"
+          msgErro=" O Campo Quantidade é Obrigatório.">
+        </app-campo-control-erro>
+      </div>
+
+      <div class="col-6 col-md-3" [ngClass]="aplicaCssErro('preco')">
+        <label class="control-label" for="preco">Preço</label>
+        <input type="number" class="form-control" id="preco" formControlName="preco">
+        <app-campo-control-erro [mostarErro]="verificarValidTouched('preco')" msgErro=" O Campo preco é Obrigatório.">
+        </app-campo-control-erro>
+      </div>
+
+    </div>
+
+    <div formGroupName="fornecedor">
+
+      <div class="row">
+        <div class="col-md-4" [ngClass]="aplicaCssErro('fornecedor.nome')">
+          <label class="control-label" for="nome">Nome Fornecedor</label>
+          <select type="text" class="form-control" id="nome" formControlName="nome" (blur)="consultarFornecedor()">
+            <option *ngFor="let fornecedor of fornecedores" [value]="fornecedor.nome">
+              {{ fornecedor.nome }}</option>
+          </select>
+          <app-campo-control-erro [mostarErro]="verificarValidTouched('fornecedor.nome')"
+            msgErro=" O Campo Nome é Obrigatório.">
+          </app-campo-control-erro>
+        </div>
+
+        <div class="col-6 col-md-4" [ngClass]="aplicaCssErro('fornecedor.email')">
+          <label class="control-label" for="email">Email</label>
+          <input type="text" class="form-control" id="email" formControlName="email">
+          <app-campo-control-erro [mostarErro]="verificarValidTouched('fornecedor.email')"
+            msgErro=" O Campo Email é Obrigatório.">
+          </app-campo-control-erro>
+        </div>
+
+        <div class="col-6 col-md-4" [ngClass]="aplicaCssErro('fornecedor.telefone')">
+            <label class="control-label" for="telefone">Telefone</label>
+            <input type="number" class="form-control" id="telefone" formControlName="telefone">
+            <app-campo-control-erro [mostarErro]="verificarValidTouched('fornecedor.telefone')"
+              msgErro=" O Campo Telefone é Obrigatório.">
+            </app-campo-control-erro>
+          </div>
+          
+      </div>
+
+      <div class="row">
+        
+
+        <div class="col-6 col-md-4" [ngClass]="aplicaCssErro('fornecedor.nif')">
+          <label class="control-label" for="nif">NIF</label>
+          <input type="text" class="form-control" id="nif" formControlName="nif">
+          <app-campo-control-erro [mostarErro]="verificarValidTouched('fornecedor.nif')"
+            msgErro=" O Campo NIF é Obrigatório.">
+          </app-campo-control-erro>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="row">
+      <div class="col-sm-1">
+        <button type="submit" class="btn btn-primary"> Guardar </button>
+      </div>
+      <div class="col-sm-1">
+        <button class="btn btn-danger" (click)="resetar()"> Cancelar </button>
+      </div>
+
+    </div>
+
+    <app-form-debug [form]="formulario"></app-form-debug>
+
+
+
+  </form>
+</div>

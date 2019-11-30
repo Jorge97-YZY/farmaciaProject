@@ -8,5 +8,5 @@ export class Produto {
         public preco?: number,
         public fornecedor?: Fornecedor
     ) {
-     }
+    }
 }
