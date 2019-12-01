@@ -3,7 +3,7 @@
 
     <div class="row">
       <div class="col-6 col-md-6" [ngClass]="aplicaCssErro('descricao')">
-        <label class="control-label" for="descricao">Descrição</label>
+        <label class="control-label" for="descricao">Descrição:</label>
         <input type="text" class="form-control" id="descricao" formControlName="descricao">
         <app-campo-control-erro [mostarErro]="verificarValidTouched('descricao')"
           msgErro=" O Campo Descrição é Obrigatório.">
@@ -11,27 +11,47 @@
       </div>
 
       <div class="col-6 col-md-3" [ngClass]="aplicaCssErro('quantidade')">
-        <label class="control-label" for="quantidade">Quantidade</label>
+        <label class="control-label" for="quantidade">Quantidade:</label>
         <input type="number" class="form-control" id="quantidade" formControlName="quantidade">
-        <app-campo-control-erro [mostarErro]="verificarValidTouched('quantidade')"
-          msgErro=" O Campo Quantidade é Obrigatório.">
+        <app-campo-control-erro [mostarErro]="verificarValidTouched('quantidade')" msgErro="Quantidade é Obrigatório.">
         </app-campo-control-erro>
       </div>
 
       <div class="col-6 col-md-3" [ngClass]="aplicaCssErro('preco')">
-        <label class="control-label" for="preco">Preço</label>
+        <label class="control-label" for="preco">Preço:</label>
         <input type="number" class="form-control" id="preco" formControlName="preco">
-        <app-campo-control-erro [mostarErro]="verificarValidTouched('preco')" msgErro=" O Campo preco é Obrigatório.">
+        <app-campo-control-erro [mostarErro]="verificarValidTouched('preco')" msgErro="Preço é Obrigatório.">
         </app-campo-control-erro>
       </div>
+
+    </div>
+
+    <div class="row">
+
+      <div class="col-6 col-md-6" [ngClass]="aplicaCssErro('dataFabrico')">
+        <label class="control-label" for="dataFabrico">Data Fabrico:</label>
+        <input type="date" class="form-control" id="dataFabrico" formControlName="dataFabrico">
+        <app-campo-control-erro [mostarErro]="verificarValidTouched('dataFabrico')"
+          msgErro="Data de fabrico é Obrigatório.">
+        </app-campo-control-erro>
+      </div>
+
+      <div class="col-6 col-md-6" [ngClass]="aplicaCssErro('dataCaducidade')">
+        <label class="control-label" for="dataCaducidade">Data Caducidade:</label>
+        <input type="date" class="form-control" id="dataCaducidade" formControlName="dataCaducidade">
+        <app-campo-control-erro [mostarErro]="verificarValidTouched('dataCaducidade')"
+          msgErro="Data de Caducidade é Obrigatório.">
+        </app-campo-control-erro>
+      </div>
+
 
     </div>
 
     <div formGroupName="fornecedor">
 
       <div class="row">
-        <div class="col-md-4" [ngClass]="aplicaCssErro('fornecedor.nome')">
-          <label class="control-label" for="nome">Nome Fornecedor</label>
+        <div class="col-6 col-md-3" [ngClass]="aplicaCssErro('fornecedor.nome')">
+          <label class="control-label" for="nome">Nome Fornecedor:</label>
           <select type="text" class="form-control" id="nome" formControlName="nome" (blur)="consultarFornecedor()">
             <option *ngFor="let fornecedor of fornecedores" [value]="fornecedor.nome">
               {{ fornecedor.nome }}</option>
@@ -41,38 +61,41 @@
           </app-campo-control-erro>
         </div>
 
-        <div class="col-6 col-md-4" [ngClass]="aplicaCssErro('fornecedor.email')">
-          <label class="control-label" for="email">Email</label>
+        <div class="col-6 col-md-3" [ngClass]="aplicaCssErro('fornecedor.email')">
+          <label class="control-label" for="email">Email:</label>
           <input type="text" class="form-control" id="email" formControlName="email">
           <app-campo-control-erro [mostarErro]="verificarValidTouched('fornecedor.email')"
             msgErro=" O Campo Email é Obrigatório.">
           </app-campo-control-erro>
         </div>
 
-        <div class="col-6 col-md-4" [ngClass]="aplicaCssErro('fornecedor.telefone')">
-            <label class="control-label" for="telefone">Telefone</label>
-            <input type="number" class="form-control" id="telefone" formControlName="telefone">
-            <app-campo-control-erro [mostarErro]="verificarValidTouched('fornecedor.telefone')"
-              msgErro=" O Campo Telefone é Obrigatório.">
-            </app-campo-control-erro>
-          </div>
-          
-      </div>
+        <div class="col-6 col-md-3" [ngClass]="aplicaCssErro('fornecedor.telefone')">
+          <label class="control-label" for="telefone">Telefone:</label>
+          <input type="number" class="form-control" id="telefone" formControlName="telefone">
+          <app-campo-control-erro [mostarErro]="verificarValidTouched('fornecedor.telefone')"
+            msgErro=" O Campo Telefone é Obrigatório.">
+          </app-campo-control-erro>
+        </div>
 
-      <div class="row">
-        
-
-        <div class="col-6 col-md-4" [ngClass]="aplicaCssErro('fornecedor.nif')">
-          <label class="control-label" for="nif">NIF</label>
+        <div class="col-6 col-md-3" [ngClass]="aplicaCssErro('fornecedor.nif')">
+          <label class="control-label" for="nif">NIF:</label>
           <input type="text" class="form-control" id="nif" formControlName="nif">
           <app-campo-control-erro [mostarErro]="verificarValidTouched('fornecedor.nif')"
             msgErro=" O Campo NIF é Obrigatório.">
           </app-campo-control-erro>
         </div>
-
+      </div>
+      <div class="row" >
+          <div class="col-sm-2">
+              <div class="custom-control custom-checkbox">
+                  <input type="checkbox" class="custom-control-input" id="status" formControlName="status">
+                  <label class="custom-control-label" for="status">Fornecedor Activo</label>
+              </div>
+          </div>
       </div>
 
     </div>
+    
 
     <div class="row">
       <div class="col-sm-1">

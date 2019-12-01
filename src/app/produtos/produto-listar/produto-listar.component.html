@@ -11,9 +11,11 @@
             <th>Descrição</th>
             <th>Quantidade</th>
             <th>Preço</th>
-            <th>Nome Fornecedor</th>
-            <th>(+244) Telefone Fornecedor</th>
-            <th>Nif Fornecedor</th>
+            <th>Fabrico</th>
+            <th>Caducidade</th>
+            <th>Fornecedor</th>
+            <th>(+244) Telefone </th>
+            <th>Nif </th>
             <th>Editar</th>
           </tr>
         </thead>
@@ -22,7 +24,9 @@
             <td>{{p?.id}}</td>
             <td>{{p?.descricao}}</td>
             <td>{{p?.quantidade}}</td>
-            <td>{{p?.preco}}</td>
+            <td>{{p?.preco}}Kz</td>
+            <td>{{p?.dataFabrico}}</td>
+            <td>{{p?.dataCaducidade}}</td>
             <td>{{p?.fornecedor.nome}}</td>
             <td>(+244) {{p?.fornecedor.telefone}}</td>
             <td>{{p?.fornecedor.nif}}</td>

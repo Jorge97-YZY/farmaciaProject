@@ -44,8 +44,11 @@ export class FornecedorService {
   fornList() {
     return this.fornecedores;
   }
-  consultarForn(nome: string){
+  consultarForn(nome: string) {
     return this.fornecedores.filter(v => v.nome === nome);
+  }
+  getFornActivo() {
+    return this.fornecedores.filter(v => v.status === true);
   }
   listId(id: number) {
     for (let i = 0; i < this.fornecedores.length; i++) {

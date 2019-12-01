@@ -21,7 +21,7 @@ export class ProdutoCadastrarComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.fornecedores = this.fornecedorService.fornList();
+    this.fornecedores = this.fornecedorService.getFornActivo();
     this.criarForm();
     }
   criarForm() {
@@ -29,6 +29,8 @@ export class ProdutoCadastrarComponent implements OnInit {
       descricao: [null, Validators.required],
       quantidade: [null, Validators.required],
       preco: [null, Validators.required],
+      dataFabrico: [null, Validators.required],
+      dataCaducidade: [null, Validators.required],
       fornecedor: this.formBuilder.group({
         nome: [null, Validators.required],
         email: [null, Validators.required],
@@ -58,7 +60,7 @@ export class ProdutoCadastrarComponent implements OnInit {
   onSubmit() {
     if (this.formulario.valid) {
       console.log(this.formulario.value);
-      // this.fornecedorService.guardarFunc(this.formulario.value);
+
       this.resetar();
     } else {
       console.log('Formulario Invalido!');
@@ -84,12 +86,7 @@ export class ProdutoCadastrarComponent implements OnInit {
       (this.formulario.get(campo).touched || this.formulario.get(campo).dirty)
     );
   }
-  /* verificarEmailInvalido() {
-    const campoEmail = this.formulario.get("email");
-    if (this.formulario.get("email").errors) {
-      return this.formulario.get("email").errors.email && campoEmail.touched;
-    }
-  } */
+
   aplicaCssErro(campo: string) {
     return {
       'has-error': this.verificarValidTouched(campo),
