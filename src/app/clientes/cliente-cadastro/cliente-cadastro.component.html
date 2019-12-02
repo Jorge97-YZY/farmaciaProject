@@ -1,55 +1,120 @@
 <div class="container">
     <h2>Cadastrar Cliente</h2>
-<br>
-<form [formGroup]="formPrincipal" (ngSubmit)="onSubmit()">
-    <div class="row">
-        <label for="nome" class="form-control-label">Nome</label>
-        <input type="text" class="form-control form-control-danger" placeholder="Informe o nome"  formControlName="nome"  [(ngModel)]="cliente.nome">
-    </div>
-    <div class="row">
-        <label for="bi" class="form-control-label">BI</label>
-        <input type="text" class="form-control form-control-danger" placeholder="Informe o Nº do Bi"  formControlName="bi" [(ngModel)]="cliente.bi">
-    </div>
-    <div class="row">
-        <label for="dataNac" class="form-control-label">Data Nascimento</label>
-        <input type="date" class="form-control form-control-danger" placeholder="Informe a Data de Nascimento"  formControlName="data_nac" [(ngModel)]="cliente.data_nac">
-    </div>
+    <br>
+    <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
 
-    <div class="row">
-        <label for="telefone" class="form-control-label">Telefone</label>
-        <input type="text" class="form-control form-control-danger" placeholder="Informe o  numero de telefone"  formControlName="telefone" [(ngModel)]="cliente.telefone">
-    </div>
-    <div class="row">
-        <label for="bairro" class="form-control-label">Bairro</label>
-        <input type="text" class="form-control form-control-danger" placeholder="Informe o Bairo"  formControlName="bairro" [(ngModel)]="cliente.bairro">
-    </div>
-    <div class="row">
-        <label for="rua" class="form-control-label">Rua</label>
-        <input type="text" class="form-control form-control-danger" placeholder="Informe a Rua"  formControlName="rua" [(ngModel)]="cliente.rua">
-    </div>
-    <div class="row">
-        <label for="dataCadastro" class="form-control-label">Data Cadastro</label>
-        <input type="date" class="form-control form-control-danger" placeholder="Informe a Data de Cadastro"  formControlName="dataCadastro" [(ngModel)]="cliente.dataCadastro">
-    </div>
-    
-    <div class="row">
-        <label for="numClie" class="form-control-label">Nº de Cliente</label>
-        <input type="text" class="form-control form-control-danger" placeholder="Informe o  Numero de Cliente"  formControlName="numCliente" [(ngModel)]="cliente.numCliente">
-    </div>
-    
-    <div class="row">
-            <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="status" formControlName="status" [(ngModel)]="cliente.status">
-                    <label class="form-check-label" for="status">Status</label>
-                  </div>
+        <div class="row">
+
+            <div class="col-6 col-md-4" [ngClass]="aplicaCssErro('nome')">
+                <label class="control-label" for="nome">Nome:</label>
+                <input type="text" class="form-control" id="nome" formControlName="nome">
+                <app-campo-control-erro [mostarErro]="verificarValidTouched('nome')"
+                    msgErro=" O Campo Nome é Obrigatório.">
+                </app-campo-control-erro>
+            </div>
+
+            <div class="col-6 col-md-4" [ngClass]="aplicaCssErro('bi')">
+                <label class="control-label" for="bi">BI:</label>
+                <input type="text" class="form-control" id="bi" formControlName="bi">
+                <app-campo-control-erro [mostarErro]="verificarValidTouched('bi')" msgErro=" O Campo BI é Obrigatório.">
+                </app-campo-control-erro>
+            </div>
+
+            <div class="col-6 col-md-4" [ngClass]="aplicaCssErro('data_nac')">
+                <label class="control-label" for="data_nac">Data Nascimento:</label>
+                <input type="date" class="form-control" id="data_nac" formControlName="data_nac">
+                <app-campo-control-erro [mostarErro]="verificarValidTouched('data_nac')"
+                    msgErro=" Data Nascimento é Obrigatório.">
+                </app-campo-control-erro>
+            </div>
+
+
+
         </div>
 
-    
-    <br/>
-    <div class="row">
-        <button [disabled]="formPrincipal.invalid" type="submit" class="btn btn-success">Guardar</button>
-    </div>
+        <div class="row">
 
-    
-</form>
+            <div class="col-6 col-md-3" [ngClass]="aplicaCssErro('telefone')">
+                <label class="control-label" for="telefone">Telefone: </label>
+                <input type="number" class="form-control" id="telefone" formControlName="telefone">
+                <app-campo-control-erro [mostarErro]="verificarValidTouched('telefone')"
+                    msgErro=" Data Telefone é Obrigatório.">
+                </app-campo-control-erro>
+            </div>
+
+            <div class="col-6 col-md-6" [ngClass]="aplicaCssErro('bairro')">
+                <label class="control-label" for="bairro">Bairro:</label>
+                <input type="text" class="form-control" id="bairro" formControlName="bairro">
+                <app-campo-control-erro [mostarErro]="verificarValidTouched('bairro')"
+                    msgErro=" O Bairro é Obrigatório.">
+                </app-campo-control-erro>
+            </div>
+
+            <div class="col-6 col-md-3" [ngClass]="aplicaCssErro('rua')">
+                <label class="control-label" for="rua">Rua:</label>
+                <input type="text" class="form-control" id="rua" formControlName="rua">
+                <app-campo-control-erro [mostarErro]="verificarValidTouched('rua')" msgErro=" O Rua é Obrigatório.">
+                </app-campo-control-erro>
+            </div>
+
+
+        </div>
+
+        <div class="row">
+                <div class="col-md-3" [ngClass]="aplicaCssErro('sexo')">
+                        <label class="control-label" for="sexo">Sexo</label>
+                        <div class="row" id="sexo">
+                            <div class="col-sm-4" *ngFor="let item of sexoOp">
+                                <label class="radio-inline">
+                                    <input type="radio" formControlName="sexo" [value]="item.valor" /> {{item.desc}}
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+            <div class="col-6 col-md-3" [ngClass]="aplicaCssErro('numCliente')">
+                <label class="control-label" for="numCliente">Nº de Cliente</label>
+                <input type="text" class="form-control" id="numCliente" formControlName="numCliente">
+                <app-campo-control-erro [mostarErro]="verificarValidTouched('numCliente')"
+                    msgErro=" O Nº de Cliente é Obrigatório.">
+                </app-campo-control-erro>
+            </div>
+
+            <div class="col-6 col-md-6" [ngClass]="aplicaCssErro('dataCadastro')">
+                <label class="control-label" for="dataCadastro">Data Cadastro:</label>
+                <input type="date" class="form-control" id="dataCadastro" formControlName="dataCadastro">
+                <app-campo-control-erro [mostarErro]="verificarValidTouched('dataCadastro')"
+                    msgErro=" Data Cadastro é Obrigatório.">
+                </app-campo-control-erro>
+            </div>
+           
+
+
+
+        </div>
+
+        <div class="row">
+            <div class="col-sm-2">
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="status" formControlName="status">
+                    <label class="custom-control-label" for="status">Cliente Activo</label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-1">
+                <button type="submit" class="btn btn-outline-success"> Guardar </button>
+            </div>
+            <div class="col-sm-1">
+                <button class="btn btn-outline-danger" (click)="resetar()"> Cancelar </button>
+            </div>
+
+        </div>
+
+        <app-form-debug [form]="formulario"></app-form-debug>
+
+
+
+
+    </form>
 </div>

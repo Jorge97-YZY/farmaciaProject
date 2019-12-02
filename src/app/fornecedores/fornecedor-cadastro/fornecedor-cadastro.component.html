@@ -1,5 +1,7 @@
 <div class="container">
+        <h3>Fornecedor Cadastrar</h3>
     <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
+        <br>
         
         <div class="row" [ngClass]="aplicaCssErro('nome')">
 
@@ -49,19 +51,19 @@
 
         </div>
         <div class="row">
-            <div class="col-sm-1">
+            <div class="col-sm-2">
                 <div class="custom-control custom-checkbox">
                     <input type="checkbox" class="custom-control-input" id="status" formControlName="status">
-                    <label class="custom-control-label" for="status">Status</label>
+                    <label class="custom-control-label" for="status">Fornecedor Activo</label>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-sm-1">
-                <button type="submit" class="btn btn-primary"> Guardar </button>
+                <button type="submit" class="btn btn-outline-success"> Guardar </button>
             </div>
             <div class="col-sm-1">
-                <button class="btn btn-danger" (click)="resetar()"> Cancelar </button>
+                <button class="btn btn-outline-danger" (click)="resetar()"> Cancelar </button>
             </div>
 
         </div>

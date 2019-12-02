@@ -9,7 +9,8 @@ export class Cliente {
         public rua?: string,
         public dataCadastro?: string,
         public numCliente?: string,
+        public sexo?: string,
         public status?: boolean
     ) {
-     }
+    }
 }

@@ -8,6 +8,7 @@ import { ClienteEditarComponent } from './cliente-editar/cliente-editar.componen
 import { ClienteCadastroComponent } from './cliente-cadastro/cliente-cadastro.component';
 import { ClienteComponent } from './cliente/cliente.component';
 import { ClienteRoutingModule } from './cliente.routing.module';
+import { SharedModule } from './../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -17,11 +18,12 @@ import { ClienteRoutingModule } from './cliente.routing.module';
     ClienteComponent
   ],
   imports: [
-    CommonModule,
+  CommonModule,
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
-    ClienteRoutingModule
+    ClienteRoutingModule,
+    SharedModule
   ]
 })
 export class ClienteModule { }

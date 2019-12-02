@@ -10,7 +10,7 @@ import { FornecedorService } from '../fornecedor.service';
   styleUrls: ['./fornecedor-editar.component.css']
 })
 export class FornecedorEditarComponent implements OnInit {
-  formPrincipal: FormGroup;
+  formulario: FormGroup;
   fornecedor: Fornecedor = {
     nome: '',
     telefone: null,
@@ -30,7 +30,7 @@ export class FornecedorEditarComponent implements OnInit {
   }
   // Validação dos Formularios
   validarForm() {
-    this.formPrincipal = this.formBuilder.group({
+    this.formulario = this.formBuilder.group({
       'nome': ['', Validators.required],
       'telefone': [''],
       'email': ['', Validators.required],
@@ -61,6 +61,28 @@ export class FornecedorEditarComponent implements OnInit {
     this.fornecedorService.editarFornecedor(fornecedorEditar).subscribe(response => {
       console.log('Resultado:', response);
     });
+  }
+
+  verificarValidTouched(campo: string) {
+    return (
+      !this.formulario.get(campo).valid &&
+      (this.formulario.get(campo).touched || this.formulario.get(campo).dirty)
+    );
+  }
+  verificarEmailInvalido() {
+    const campoEmail = this.formulario.get('email');
+    if (this.formulario.get('email').errors) {
+      return this.formulario.get('email').errors.email && campoEmail.touched;
+    }
+  }
+  aplicaCssErro(campo: string) {
+    return {
+      'has-error': this.verificarValidTouched(campo),
+      'has-feedback': this.verificarValidTouched(campo)
+    };
+  }
+  resetar() {
+    this.formulario.reset();
   }
 
 }
